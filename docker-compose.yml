@@ -1,6 +1,16 @@
 version: '3.8'
 
 services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    networks:
+      - gces-networks
+    depends_on:
+      - mongo
   mongo:
     image: mongo:latest
     container_name: mongodb
@@ -10,8 +20,13 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: lappis
     ports:
       - "27017:27017"
+    networks:
+      - gces-networks
     volumes:
       - mongodb-data:/data/db
       
 volumes:
   mongodb-data:
+networks:
+  gces-networks:
+    driver: bridge
