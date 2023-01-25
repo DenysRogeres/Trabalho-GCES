@@ -1,10 +1,10 @@
 [tool.poetry]
 name = "gces-denysrogeres"
-version = "0.1.0"
+version = "0.1.1"
 description = "Trabalho desenvolvido na matéria de Gestão Configuração e Evolução de Software da Universidade de Brasília"
 authors = ["DenysRogeres <dennysrogeres@gmail.com>"]
 readme = "README.md"
-packages = [{include = "gces-denysrogeres"}]
+packages = [{include = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.8"
