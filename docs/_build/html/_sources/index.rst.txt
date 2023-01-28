@@ -1,11 +1,10 @@
 .. doxygenindex::
-
-.. Trabalho-GCES documentation master file, created by
-   sphinx-quickstart on Thu Jan 26 23:46:59 2023.
+.. trabalho-gces documentation master file, created by
+   sphinx-quickstart on Fri Jan 27 10:38:03 2023.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Trabalho-GCES's documentation!
+Welcome to trabalho-gces's documentation!
 =========================================
 
 .. toctree::

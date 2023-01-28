@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'Trabalho-GCES'
+project = 'trabalho-gces'
 copyright = '2023, Denys Rogeres'
 author = 'Denys Rogeres'
 
@@ -16,7 +16,7 @@ author = 'Denys Rogeres'
 extensions = ['breathe']
 
 breathe_projects = { "trabalho_gces": "../doxygen/xml" }
-
+breathe_default_project = "trabalho_gces"
 
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
