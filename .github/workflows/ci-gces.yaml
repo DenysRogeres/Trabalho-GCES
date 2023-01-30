@@ -1,0 +1,80 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [ main ]  
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+    
+    - name: Set up python3.8
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.8
+
+    - name: Install Poetry
+      uses: snok/install-poetry@v1
+
+    - name: Install Cython
+      run: pip install cython
+
+    - name: Install Poetry Dependencies 
+      run: poetry install 
+
+    - name: Build
+      run: poetry build 
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+      with:
+        python-version: 3.8
+
+    - name: Install Pytest
+      run: pip install pytest
+
+    - name: Run Tests
+      run: pytest
+
+  docs:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+      with:
+        python-version: 3.8
+
+    - name: Install Dependencies Docs
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y doxygen
+        pip install sphinx breathe
+
+    - name: Generate Doxygen Documentation
+      run: doxygen Doxyfile
+
+    - name: Generate HTML documentation
+      run: sphinx-build -b html ./docs _build
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+      with:
+        python-version: 3.8
+
+    - name: Install Pylint
+      run: pip install pylint
+
+    - name: Run Lint
+      run: pylint src tests
