@@ -11,6 +11,7 @@ services:
       - gces-networks
     depends_on:
       - mongo
+
   mongo:
     image: mongo:latest
     container_name: mongodb
@@ -24,9 +25,26 @@ services:
       - gces-networks
     volumes:
       - mongodb-data:/data/db
+
+  metabase:
+    image: metabase/metabase:latest
+    container_name: metabase
+    restart: always
+    environment:
+      - MB_DB_FILE=/metabase-data/metabase.db
+    ports:
+      - "5000:5000"
+    networks:
+      - gces-networks
+    volumes:
+      - metabase:/metabase-data
+    depends_on:
+      - mongo
+      
       
 volumes:
   mongodb-data:
+  metabase:
 networks:
   gces-networks:
     driver: bridge
